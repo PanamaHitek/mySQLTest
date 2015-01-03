@@ -10,13 +10,6 @@ package mysql_test;
  *
  * @author Antony
  */
-public class MySQL_Test {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // Esta es una prueba
-    }
+public class MySQL {
     
 }
