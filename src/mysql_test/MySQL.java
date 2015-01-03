@@ -47,7 +47,7 @@ public class MySQL {
     public void createTable(String name) {
         try {
             String Query = "CREATE TABLE " + name + ""
-                    + "(ID VARCHAR(25),Nombre VARCHAR(50), APELLIDO VARCHAR(50),"
+                    + "(ID VARCHAR(25),Nombre VARCHAR(50), Apellido VARCHAR(50),"
                     + " Edad VARCHAR(3), Sexo VARCHAR(1))";
 
             Statement st = Conexion.createStatement();
@@ -82,14 +82,25 @@ public class MySQL {
 
             while (resultSet.next()) {
                 System.out.println("ID: " + resultSet.getString("ID") + " "
-                        + "Nombre: " + resultSet.getString("Name") + " " + resultSet.getString("lastname") + " "
-                        + "Edad: " + resultSet.getString("age") + " "
-                        + "Sexo: " + resultSet.getString("gender"));
+                        + "Nombre: " + resultSet.getString("Nombre") + " " + resultSet.getString("Apellido") + " "
+                        + "Edad: " + resultSet.getString("Edad") + " "
+                        + "Sexo: " + resultSet.getString("Sexo"));
             }
 
-            JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
+            JOptionPane.showMessageDialog(null, "Error en la adquisición de datos");
+        }
+    }
+
+    public void deleteRecord(String table_name, String ID) {
+        try {
+            String Query = "DELETE FROM " + table_name + " WHERE ID = \"" + ID + "\"";
+            Statement st = Conexion.createStatement();
+            st.executeUpdate(Query);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en la adquisición de datos");
         }
     }
 
