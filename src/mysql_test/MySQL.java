@@ -16,7 +16,7 @@ public class MySQL {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + db_name, user, pass);
-            JOptionPane.showMessageDialog(null, "Se ha iniciado la conexión con el servidor de forma exitosa");
+            System.out.println("Se ha iniciado la conexión con el servidor de forma exitosa");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -27,7 +27,7 @@ public class MySQL {
     public void closeConnection() {
         try {
             Conexion.close();
-            JOptionPane.showMessageDialog(null, "Se ha finalizado la conexión con el servidor");
+            System.out.println("Se ha finalizado la conexión con el servidor");
         } catch (SQLException ex) {
             Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -39,6 +39,7 @@ public class MySQL {
             Statement st = Conexion.createStatement();
             st.executeUpdate(Query);
             MySQLConnection("root", "", name);
+            JOptionPane.showMessageDialog(null, "Se ha creado la base de datos " + name + " de forma exitosa");
         } catch (SQLException ex) {
             Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -49,7 +50,7 @@ public class MySQL {
             String Query = "CREATE TABLE " + name + ""
                     + "(ID VARCHAR(25),Nombre VARCHAR(50), Apellido VARCHAR(50),"
                     + " Edad VARCHAR(3), Sexo VARCHAR(1))";
-
+            JOptionPane.showMessageDialog(null, "Se ha creado la base de tabla " + name + " de forma exitosa");
             Statement st = Conexion.createStatement();
             st.executeUpdate(Query);
         } catch (SQLException ex) {
@@ -69,6 +70,7 @@ public class MySQL {
             st.executeUpdate(Query);
             JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
         }
     }
@@ -100,7 +102,7 @@ public class MySQL {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null, "Error en la adquisición de datos");
+            JOptionPane.showMessageDialog(null, "Error borrando el registro especificado");
         }
     }
 
